@@ -1,0 +1,18 @@
+const app = Vue.createApp({
+    // data, functions 
+    data(){
+        return{
+            showBooks : true,
+            title: "The Final Empire",
+            author: 'Brandon Stark',
+            age: 45
+        }
+    },
+    methods: {
+        toggleShowBooks(){
+            this.showBooks = !this.showBooks
+        }
+    }
+})
+
+app.mount('#app')
