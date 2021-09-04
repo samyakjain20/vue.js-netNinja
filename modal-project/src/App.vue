@@ -2,7 +2,29 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <h1>{{ title }}</h1>
-  <Modal />
+  <div v-if="showModal">
+    <Modal theme="sale"  @close="toggleModal">
+      <h1>Ninja Giveaway</h1>
+      <p>Grab your ninja swag at half price!</p>
+
+      <template v-slot:links>
+        <a href="">signup now</a>
+        <a href="">more info</a>
+      </template>
+    </Modal>
+  </div>
+
+  <div v-if="showModalTwo">
+    <Modal @close="toggleModalTwo">
+      <h1>Signup to newsletter</h1>
+      <p>For updates and promocodes!</p>
+    </Modal>
+  </div>
+
+  <br>
+  <p>Welcome...</p>
+  <button @click.alt="toggleModal"> Open Modal(alt)</button>
+  <button @click="toggleModalTwo"> Open Modal</button>
 </template>
 
 <script>
@@ -13,14 +35,17 @@ export default {
   components: { Modal },
   data() {
     return{
-      title: 'My First Vue App :)'
+      title: 'My First Vue App :)',
+      showModal: false,
+      showModalTwo: false
     }
   },
   methods: {
-    handleClick() {
-      console.log(this.$refs.name)
-      this.$refs.name.classList.add('active')
-      this.$refs.name.focus()
+    toggleModal() {
+      this.showModal = !this.showModal
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }
